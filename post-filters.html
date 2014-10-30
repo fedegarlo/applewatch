@@ -1,0 +1,64 @@
+<polymer-element name="post-filters" attributes="filters">
+  <template>
+    <style>
+    :host {
+      display: none;
+    }
+    </style>
+  </template>
+  <script>
+  Polymer('post-filters', {
+    created: function() {
+      this.filters = [
+      {
+        text : 'Favorites',
+        name : 'favorite',
+        value : 'favorite',
+        key : 'favorite',
+        icon : 'star'
+      },
+      {
+        text : 'All models',
+        name : 'catalogo',
+        value : 'reset',
+        key : 'reset',
+        icon : 'apps'
+      },{
+        text : 'Sport',
+        name : 'Sport',
+        value : 'Sport',
+        key : 'collection',
+        icon : 'trending-up'
+      },
+      {
+        text : 'Watch',
+        name : 'Watch',
+        value : 'Watch',
+        key : 'collection',
+        icon : 'alarm'
+      },
+      {
+        text : 'Edition',
+        name : 'Edition',
+        value : 'Edition',
+        key : 'collection',
+        icon : 'loyalty'
+      },
+      {
+        text : 'Man',
+        name : 'Hombre',
+        value : '42mm',
+        key : 'size',
+        icon : 'accessibility'
+      },
+      {
+        text : 'Woman',
+        name : 'Mujer',
+        value : '38mm',
+        key : 'size',
+        icon : 'favorite-outline'
+      }]
+    }
+  });
+  </script>
+</polymer-element>

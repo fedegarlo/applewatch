@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>Apple Watch</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <script src="bower_components/platform/platform.js">
+  </script>
+  <link rel="import" href="bower_components/core-elements/core-elements.html">
+  <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+  <link rel="import" href="post-filter.html">
+  <link rel="import" href="post-list.html">
+  <link rel="import" href="main-title.html">
+
+  <link rel="apple-touch-icon" href="icons/touch-icon-iphone.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="icons/touch-icon-ipad.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/touch-icon-ipad-retina.png">
+
+  <link rel="shortcut icon" href="icons/touch-icon-ipad.png" type="image/png" />
+
+  <link rel="apple-touch-startup-image" href="icons/apple-touch-startup-image-750x1294.png" media="(device-width: 375px)"><link rel="apple-touch-startup-image" href="icons/apple-touch-startup-image-1242x2148.png" media="(device-width: 414px)">
+
+  <style>
+  html,body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+  }
+  core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; 
+  }
+  #tabs {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	text-transform: uppercase;
+  }
+  #ios8statusbar {
+    background-color: #303f9f;
+    height:20px;
+    display:none;
+  }
+
+  .purple {
+    background-color: #3f51b5;
+    //padding-left:20px;
+  }
+
+  .pink paper-tab::shadow #ink {
+    color: #ff4081;
+  }
+  .pink #ink {
+    color: #ff4081;
+  }
+  .pink #selectionBar {
+    background-color: #ff4081;
+  }
+  .container {
+    width: 80%;
+    margin: 50px auto;
+  }
+  polymer-ui-sidebar-menu {
+    width: 240px;
+    height: 100%;
+  }
+  /*#titleInfo {
+    display: none;
+  }
+  .medium-tall #titleInfo {
+    display: block;
+  }*/
+  paper-fab {
+    background: #ff4081;
+    position: absolute;
+    bottom: 16px;
+    left: 82%;
+  }
+  paper-fab::shadow core-icon {
+    transform: rotate(-90deg);
+  }
+  paper-fab core-icon {
+    -webkit-transform: rotate(-90deg);
+  }
+  @media (min-width: 481px) {
+    #tabs {
+      width: 200px;
+    }
+    .container {
+      width: 400px;
+    }
+  }
+  core-scaffold::shadow core-toolbar {
+      color: #fff;
+      padding-top: 20px;
+      height: 84px;
+      //padding-left: 20px;
+    }
+  core-scaffold core-toolbar {
+      color: #fff;
+      padding-top: 20px;
+      height: 84px;
+      //padding-left: 20px;
+    }
+    #footer {
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      width: 100%;
+    }
+    core-scaffold.purple::shadow core-toolbar {
+      background-color: #3f51b5;
+    }
+    core-scaffold.purple core-toolbar {
+      background-color: #3f51b5;
+    }
+    core-scaffold.pink::shadow core-toolbar {
+      background-color: #ff4081;
+    }
+    core-scaffold.pink core-toolbar {
+      background-color: #ff4081;
+    }
+  </style>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-48380119-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="Macfools" />
+  <meta name="twitter:title" content="Elige tu Apple Watch" />
+  <meta name="twitter:description" content="Esta herramienta te ayudará a elegir el Apple Watch que vas a comprar. Filtra por varios criterios, todos los modelos anunciados hasta ahora." />
+  <meta name="twitter:image" content="http://www.macfools.com/img/applewatch.jpg" />
+  <meta name="twitter:url" content="http://www.macfools.com/watch/" />
+
+  <meta name="og:title" content="Macfools :: Elige tu Apple Watch">
+  <meta name="og:url" content="http://www.macfools.com/watch/">
+  <meta name="og:image" content="http://www.macfools.com/img/applewatch.jpg">
+  <meta name="og:description" content="Esta herramienta te ayudará a elegir el Apple Watch que vas a comprar. Filtra por varios criterios, todos los modelos anunciados hasta ahora.">
+</head>
+
+<body unresolved>
+  <core-scaffold mode="waterfall" class="purple">
+    <core-header-panel navigation flex mode="seamed">
+      <core-toolbar><span>Apple Watch</span></core-toolbar>
+      <core-menu theme="core-light-theme">
+        <post-filter></post-filter>
+      </core-menu>
+    </core-header-panel>
+    <template is="auto-binding" id="toolbarTitle">
+      <div tool>{{text}}</div>
+    </template>
+    <div class="container" layout vertical center style="position: relative;">
+      <post-list show="all"></post-list>
+    </div>
+  </core-scaffold>
+  <paper-fab hidden icon="arrow-forward" onclick="tap()"></paper-fab>
+  <paper-toast id="toast"></paper-toast>
+  <script>
+  var list = document.querySelector('post-list'),
+  filters = document.querySelector('post-filter'),
+  headerPanel = document.querySelector('core-header-panel'),
+  fab = document.querySelector('paper-fab'),
+  toast = document.querySelector('paper-toast'),
+  menu = document.querySelector('paper-menu-button'),
+  scaffold = document.querySelector('core-scaffold'),
+  mainTitle = document.querySelector('#toolbarTitle');
+
+  mainTitle.text = "All models";
+
+  function tap() {
+    scaffold.$.headerPanel.scroller.scrollTop = 0;
+  }
+
+  scaffold.addEventListener('scroll', function() {
+    var scroller = event.detail.target;
+
+    if(scroller.scrollTop > 200) {
+      fab.hidden = false;
+    } else {
+      fab.hidden = true;
+    }
+  });
+
+  filters.addEventListener('filter-selected', function(event) {
+    var value = event.detail.value,
+        key = event.detail.key,
+        text = event.detail.text,
+        message,
+        toolbarClass = 'purple',
+        existsFavs = false;
+    list.posts.forEach(function(post){
+      switch(key) {
+        case 'favorite':
+          if(post.favorite) {
+            post.visible=true;
+            existsFavs = true;
+          } else {
+            post.visible=false;
+          }
+          if (existsFavs) {
+            message = 'Showing ' + value + ' models.';
+          } else {
+            message = 'No favorites yet. Choose a model.';
+          }
+          toolbarClass = 'pink';
+          break;
+        case 'size':
+          if(post.size === value) {
+            post.visible=true;
+          } else {
+            post.visible=false;
+          }
+          message = 'Showing ' + value + ' models.';
+          break;
+        case 'collection':
+          if(post.collection === value) {
+            post.visible=true;
+          } else {
+            post.visible=false;
+          }
+          message = 'Showing ' + value + ' models.';
+          break;
+        default:
+          post.visible=true;
+          message = 'Showing all models.';
+      }
+      mainTitle.text = text;
+    });
+    scaffold.setAttribute('class', toolbarClass);
+    if (toast.opened) {
+      toast.dismiss();
+      setTimeout(function(){
+        toast.text = message;
+        toast.show();
+      }, 500);
+    } else {
+      toast.duration = 3000;
+        toast.text = message;
+        toast.show();
+    }
+    if (!(key === 'favorite' && !existsFavs)) {
+      scaffold.closeDrawer();
+    }
+  });
+
+  </script>
+</body>
+
+</html>

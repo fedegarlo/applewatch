@@ -1,0 +1,65 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="post-service/post-service.html">
+<link rel="import" href="post-card.html">
+<polymer-element name="post-list" attributes="show">
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    post-card {
+      margin-bottom: 30px;
+    }
+    post-card .collection {
+      font-weight: 400;
+    }
+    </style>
+
+    <post-service id="service" posts="{{posts}}"></post-service>
+    
+    <div layout vertical center>
+      <template repeat="{{post in posts}}">
+        <post-card
+          favorite="{{post.favorite}}"
+          uid="{{post.uid}}"
+          on-favorite-tap="{{handleFavorite}}"
+          on-share-item="{{shareItem}}"
+          hidden?="{{(show == 'all' && !post.visible) || show == 'favorites' && !post.favorite}}">
+          <img src="{{post.picture}}" width="100%">
+          <h2><span class="collection">{{post.collection}}</span> {{post.case}}</h2>
+          <p>{{post.size}} {{post.wrist}}</p>
+        </post-card>
+      </template>
+    </div>
+  </template>
+
+  <script>
+  Polymer({
+    handleFavorite: function(event, detail, sender) {
+      var post = sender.templateInstance.model.post;
+      this.$.service.setFavorite(post.uid, post.favorite);
+    },
+    shareItem: function(event, detail, sender) {
+      var id = sender.templateInstance.model.post.uid,
+      useragent = navigator.userAgent,
+      prefix,
+      url = 'http://macfools.com/watch/index.html?model=' + id,
+      sms = 'Este es el #AppleWatch que me voy a comprar ',
+      shareSms;
+
+      if (useragent.indexOf('iPhone') !== -1 || useragent.indexOf('iPad') !== -1) {
+        prefix = 'twitter://post?message=';
+        shareSms = prefix + encodeURIComponent(sms) + encodeURIComponent(url);
+      } else {
+        prefix = 'http://www.twitter.com/share?text=';
+        shareSms = prefix + encodeURIComponent(sms) + '&url=' + encodeURIComponent(url);
+      }
+
+      location.href= shareSms;
+      //http://macfools.com/watch?model=' + id;
+      //
+    }
+  });
+  </script>
+</polymer-element>
