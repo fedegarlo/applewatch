@@ -81,9 +81,14 @@
   .medium-tall #titleInfo {
     display: block;
   }*/
+  .footer {
+    position: fixed;
+    bottom: -4px;
+    width: 100%;
+  }
   paper-fab {
     background: #ff4081;
-    position: absolute;
+    position: relative;
     bottom: 16px;
     left: 82%;
   }
@@ -103,15 +108,18 @@
   }
   core-scaffold::shadow core-toolbar {
       color: #fff;
-      padding-top: 20px;
-      height: 84px;
+      //padding-top: 20px;
+      height: 64px;
       //padding-left: 20px;
     }
   core-scaffold core-toolbar {
       color: #fff;
-      padding-top: 20px;
-      height: 84px;
+      //padding-top: 20px;
+      height: 64px;
       //padding-left: 20px;
+    }
+    #toast {
+      position: relative;
     }
     #footer {
       position: fixed;
@@ -169,9 +177,11 @@
     <div class="container" layout vertical center style="position: relative;">
       <post-list show="all"></post-list>
     </div>
+    <div class="footer">
+      <paper-fab hidden icon="arrow-forward" onclick="tap()"></paper-fab>
+      <paper-toast id="toast"></paper-toast>
+    </div>
   </core-scaffold>
-  <paper-fab hidden icon="arrow-forward" onclick="tap()"></paper-fab>
-  <paper-toast id="toast"></paper-toast>
   <script>
   var list = document.querySelector('post-list'),
   filters = document.querySelector('post-filter'),
