@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.borrasca_v2" versionCode="33" version="2.6.0.3">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Apple Watch Catalogue</name>
+
+    <description>
+      All Apple Watch models to view and choose your favorite. 
+    </description>
+
+    <author href="http://fedegarlo.com" email="fgarcialorca@gmail.com">
+      Fede García
+    </author>
+    
+    <gap:platform name="android" />
+    <!--gap:platform name="winphone" /-->
+    
+    <icon src="icon.png" />
+    <icon gap:density="ldpi" gap:platform="android" src="icons/android/icon-36-ldpi.png" />
+    <icon gap:density="mdpi" gap:platform="android" src="icons/android/icon-48-mdpi.png" />
+    <icon gap:density="hdpi" gap:platform="android" src="icons/android/icon-72-hdpi.png" />
+    <icon gap:density="xhdpi" gap:platform="android" src="icons/android/icon-96-xhdpi.png" />
+    
+    
+    <gap:splash src="splash.png" />
+    <gap:splash gap:density="ldpi" gap:platform="android" src="icons/android/screen-ldpi-portrait.png" />
+    <gap:splash gap:density="mdpi" gap:platform="android" src="icons/android/screen-mdpi-portrait.png" />
+    <gap:splash gap:density="hdpi" gap:platform="android" src="icons/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:density="xhdpi" gap:platform="android" src="icons/android/screen-xhdpi-portrait.png" />
+    <!--gap:splash src="splash.png" gap:platform="winphone" /-->
+
+    
+    
+    <preference name="permissions" value="none"/>
+    <preference name="android-minSdkVersion" value="9" />
+    <preference name="fullscreen" value="true" />
+    <preference name="target-device" value="universal" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="orientation" value="default" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="splash-screen-duration" value="2000" />
+    <preference name="KeepRunning" value="true"/>
+	<preference name="DisallowOverscroll" value="true"/>
+    <preference name="phonegap-version" value="3.6.3" />
+    
+    
+    <feature name="http://api.phonegap.com/1.0/file"/>
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+
+    
+    <!--<access origin="http://digitalpapyrus.eu" subdomains="true" />
+    <access origin="http://digitalpapyrus.es" subdomains="true" />
+    <access origin="http://outbook.es" subdomains="true" />
+	<access origin="http://openstreetmap.org" subdomains="true" />
+    <access origin="http://stamen.com" subdomains="true" />
+    <access origin="http://openlayers.org" subdomains="true" />
+    <access origin="openweathermap.org" subdomains="true" />-->
+
+</widget>
