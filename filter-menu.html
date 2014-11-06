@@ -124,6 +124,7 @@
             <footer>
               <paper-button raised on-tap="{{filter}}" class="colored custom"><core-icon icon="check"></core-icon>Accept</paper-button>
               <paper-button raised on-tap="{{close}}"><core-icon icon="clear"></core-icon>Cancel</paper-button>
+              <paper-button raised on-tap="{{clear}}"><core-icon icon="refresh"></core-icon>Clear filters</paper-button>
             </footer>
         </div>
 </template>
@@ -151,6 +152,11 @@
     },
     close: function() {
       this.fire('close-filter-menu');
+     },
+    clear: function() {
+      this.filtersToSend.forEach(function(post){
+        post.value = '';
+      });
      },
     filter: function(event, detail, sender) {
       var value = sender.getAttribute('value'),
