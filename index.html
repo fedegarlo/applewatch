@@ -191,27 +191,22 @@
         list.posts.forEach(function(post){
           switch(detail.text) {
             case 'size':
-              if (detail.value !== 'Indiferent' && post.size !== detail.value) {
+              if (detail.value !== 'No filter' && detail.value !== '' && post.size !== detail.value) {
                 post.visible = false;
               }
               break;
               case 'collection':
-              if (detail.value !== 'Indiferent' && post.collection !== detail.value) {
+              if (detail.value !== 'No filter' && detail.value !== '' && post.collection !== detail.value) {
                 post.visible = false;
               }
               break;
-            case 'Sport':
-              if (detail.value && post.collection !== detail.text) {
+              case 'wristColor':
+              if (detail.value !== 'No filter' && detail.value !== '' && post.wristColor !== detail.value) {
                 post.visible = false;
               }
               break;
-            case 'Watch':
-              if (detail.value && post.collection !== detail.text) {
-                post.visible = false;
-              }
-              break;
-            case 'Edition':
-              if (detail.value && post.collection !== detail.text) {
+              case 'case':
+              if (detail.value !== 'No filter' && detail.value !== '' && post.case !== detail.value) {
                 post.visible = false;
               }
               break;

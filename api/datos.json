@@ -139,51 +139,7 @@
     "picture":"images/line_10_large.jpg",
     "favorite": false,
     "visible":true
-    },{ 
-    "uid":29,
-    "wrist":"Bright Red Modern Buckle",
-    "wristColor":"Red",
-    "wristType":"Modern Buckle",
-    "size":"38mm",
-    "marca":"Apple",
-    "modelo":"38MM 18K YELLOW GOLD CASE WITH BRIGHT RED MODERN BUCKLE",
-    "collection":"Edition",
-    "case":"18K Yellow Gold",
-    "caseType" : 5,
-    "fecha":1331074800000,
-    "picture":"images/edition_01_large.jpg",
-    "favorite": false,"visible":true
-},{ 
-    "uid":30,
-    "wrist":"White Sport Band",
-    "wristColor":"White",
-    "wristType":"Sport Band",
-    "size":"38mm",
-    "marca":"Apple",
-    "modelo":"38MM 18K ROSE GOLD CASE WITH WHITE SPORT BAND",
-    "collection":"Edition",
-    "case":"18K Rose Gold",
-    "caseType" : 6,
-    "fecha":1331074800000,
-    "picture":"images/edition_02_large.jpg",
-    "favorite": false,
-    "visible":true
-},{ 
-    "uid":31,
-    "wrist":"White Sport Band",
-    "wristColor":"White",
-    "wristType":"Sport Band",
-    "size":"42mm",
-    "marca":"Apple",
-    "modelo":"42MM 18K ROSE GOLD CASE WITH WHITE SPORT BAND",
-    "collection":"Edition",
-    "case":"18K Rose Gold",
-    "caseType" : 6,
-    "fecha":1331074800000,
-    "picture":"images/edition_03_large.jpg",
-    "favorite": false,
-    "visible":true
-},
+    },
   { 
     "uid":1,
     "wrist":"White Sport Band",
@@ -421,7 +377,9 @@
     "caseType" : 2,
     "fecha":1331074800000,
     "picture":"images/collection_17_large.jpg",
-    "favorite": false,"visible":true},
+    "favorite": false,
+    "visible":true
+    },
   { 
     "uid":18,
     "wrist":"Space Black Stainless Steel Link Bracelet",
@@ -435,7 +393,8 @@
     "caseType" : 2,
     "fecha":1331074800000,
     "picture":"images/collection_18_large.jpg",
-    "favorite": false,"visible":true
+    "favorite": false,
+    "visible":true
 },
 { 
     "uid":32,
@@ -482,6 +441,51 @@
     "caseType" : 5,
     "fecha":1331074800000,
     "picture":"images/edition_06_large.jpg",
+    "favorite": false,
+    "visible":true
+}
+,{ 
+    "uid":29,
+    "wrist":"Bright Red Modern Buckle",
+    "wristColor":"Red",
+    "wristType":"Modern Buckle",
+    "size":"38mm",
+    "marca":"Apple",
+    "modelo":"38MM 18K YELLOW GOLD CASE WITH BRIGHT RED MODERN BUCKLE",
+    "collection":"Edition",
+    "case":"18K Yellow Gold",
+    "caseType" : 5,
+    "fecha":1331074800000,
+    "picture":"images/edition_01_large.jpg",
+    "favorite": false,"visible":true
+},{ 
+    "uid":30,
+    "wrist":"White Sport Band",
+    "wristColor":"White",
+    "wristType":"Sport Band",
+    "size":"38mm",
+    "marca":"Apple",
+    "modelo":"38MM 18K ROSE GOLD CASE WITH WHITE SPORT BAND",
+    "collection":"Edition",
+    "case":"18K Rose Gold",
+    "caseType" : 6,
+    "fecha":1331074800000,
+    "picture":"images/edition_02_large.jpg",
+    "favorite": false,
+    "visible":true
+},{ 
+    "uid":31,
+    "wrist":"White Sport Band",
+    "wristColor":"White",
+    "wristType":"Sport Band",
+    "size":"42mm",
+    "marca":"Apple",
+    "modelo":"42MM 18K ROSE GOLD CASE WITH WHITE SPORT BAND",
+    "collection":"Edition",
+    "case":"18K Rose Gold",
+    "caseType" : 6,
+    "fecha":1331074800000,
+    "picture":"images/edition_03_large.jpg",
     "favorite": false,
     "visible":true
 }
