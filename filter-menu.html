@@ -66,18 +66,6 @@
           </div>
           <div class="content">
             <ul id="toggles" layout center>
-              <!--<li>
-                <paper-checkbox checked="{{filtersToSend[0].value}}" class="item"></paper-checkbox>
-                <span class="label">Sport</span>
-              </li>
-              <li>
-                <paper-checkbox checked="{{filtersToSend[1].value}}" class="item"></paper-checkbox>
-                <span class="label">Watch</span>
-              </li>
-              <li>
-                <paper-checkbox checked="{{filtersToSend[2].value}}" class="item"></paper-checkbox>
-                <span class="label">Edition</span>
-              </li>-->
               <li>
                 <span class="label">Collection</span>
                 <paper-dropdown-menu selected="{{filtersToSend[0].value}}" valueattr="label" halign="right">
@@ -108,18 +96,6 @@
   Polymer('filter-menu', {
     created: function() {
       this.filtersToSend = [
-      /*{
-        text : 'Sport',
-        value : false
-      },
-      {
-        text : 'Watch',
-        value : false
-      },
-      {
-        text : 'Edition',
-        value : false
-      },*/
       {
         text : 'collection',
         value : 'Indiferent'

@@ -22,13 +22,20 @@
     polyfill-next-selector { content: '.card-header h2'; }
     .card-header ::content h2 {
       margin: 0;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       font-weight: 300;
       margin-top: 20px;
     }
     .card-header ::content h2 + p {
-      margin-top: 0;
+      margin-top: -6px;
+      font-size: 14px;
     }
+
+    p {
+      margin-top: -6px;
+      font-size: 14px;
+    }
+
     polyfill-next-selector { content: '.card-header img'; }
     .card-header ::content img {
       margin-right: 10px;

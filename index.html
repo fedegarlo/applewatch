@@ -3,13 +3,12 @@
 
 <head>
 
-  <title>Apple Watch</title>
+  <title>Apple Watch Catalogue</title>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <script src="bower_components/platform/platform.js">
-  </script>
+  <script src="bower_components/platform/platform.js"></script>
   <link rel="import" href="bower_components/core-elements/core-elements.html">
   <link rel="import" href="bower_components/paper-elements/paper-elements.html">
   <link rel="import" href="post-filter.html">
@@ -30,15 +29,8 @@
     -webkit-overflow-scrolling: touch; 
   }
 
-  #ios8statusbar {
-    background-color: #303f9f;
-    height:20px;
-    display:none;
-  }
-
   .purple {
     background-color: #3f51b5;
-    //padding-left:20px;
   }
 
   .pink paper-tab::shadow #ink {
@@ -59,21 +51,16 @@
     width: 240px;
     height: 100%;
   }
-  /*#titleInfo {
-    display: none;
-  }
-  .medium-tall #titleInfo {
-    display: block;
-  }*/
   .footer {
     position: fixed;
-    bottom: -4px;
+    bottom: 0px;
     width: 100%;
   }
   paper-fab {
     background: #ff4081;
     bottom: 28px;
-    left: 60%;
+    left: 90%;
+    position: absolute;
   }
   @media (min-width: 481px) {
     #tabs {
@@ -87,13 +74,11 @@
       color: #fff;
       padding-top: 20px;
       height: 84px;
-      //padding-left: 20px;
     }
   core-scaffold core-toolbar {
       color: #fff;
       padding-top: 20px;
       height: 84px;
-      //padding-left: 20px;
     }
     #toast {
       position: relative;
@@ -142,21 +127,17 @@
       <div tool>{{text}}</div>
     </template>
     <div class="container" layout vertical center style="position: relative;">
-      <post-list show="all"></post-list>
+      <post-list show="all" hidden></post-list>
     </div>
     <div class="footer">
-      <paper-fab icon="filter" onclick="tap()"></paper-fab>
       <paper-toast id="toast"></paper-toast>
     </div>
   </core-scaffold>
+    <paper-fab icon="filter" onclick="tap()"></paper-fab>
     <div id="animate-me" hidden>
       <filter-menu></filter-menu>
     </div>
   <script>
-    document.addEventListener('polymer-ready', function() {
-      setup();
-      document.getElementById('animate-me').removeAttribute('hidden');
-    });
     var list = document.querySelector('post-list'),
     filters = document.querySelector('post-filter'),
     fab = document.querySelector('paper-fab'),
@@ -170,6 +151,11 @@
     state = {
       opened: false 
     };
+    document.addEventListener('polymer-ready', function() {
+      setup();
+      filterLayer.removeAttribute('hidden');
+      list.removeAttribute('hidden');
+    });
     mainTitle.text = "All models";
 
     function getMeta() {
@@ -241,13 +227,12 @@
         key = event.detail.key,
         text = event.detail.text,
         message,
-        toolbarClass = 'purple',
-        existsFavs = false;
+        toolbarClass = 'purple';
 
     message = 'Showing ' + value + ' models.';
     if (value === 'favorite') {
       list.show = 'favorites';
-      message = (!existsFavs) ? 'No favorites yet. Choose a model.' : message;
+      message = 'Here, your favorite models.';
       toolbarClass = 'pink';
       fab.hidden=true;
     } else {
