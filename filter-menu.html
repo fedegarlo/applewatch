@@ -1,0 +1,144 @@
+<polymer-element name="filter-menu">
+
+    <template>
+
+        <style>
+            :host {
+                position:absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                font-family: 'RobotoDraft', sans-serif;
+                font-weight: 100;
+            }
+            :host core-toolbar {
+              background-color: #FFF;
+              border-bottom: 1px #eee solid;
+            }
+            .colored {
+              color: #ff4081;
+            }
+            #toggles {
+              padding-left: 30px;
+              padding-right: 30px;
+            }
+            .label {
+              float: left;
+            }
+            .item {
+              float: right;
+            }
+            paper-dropdown-menu {
+              top: -10px;
+              padding-top: 2px;
+              float: right;
+            }
+            li {
+              list-style: none;
+              clear: both;
+              margin-top: 30px;
+              height: 20px;
+            }
+            paper-checkbox::shadow #ink[checked] {
+              color: #ff4081;
+            }
+
+            paper-checkbox::shadow #checkbox.checked {
+              border-color: #ff4081;
+            }
+            .content {
+              position: relative;
+            }
+            footer {
+              padding-left: 20px;
+              padding-bottom: 20px;
+              padding-top: 40px;
+              bottom: 0;
+            }
+        </style>
+        <div>
+          <div class="core-header">
+            <core-toolbar>
+              <core-icon-button icon="close" on-tap="{{close}}"></core-icon-button>
+              <span flex="">Filter models</span>
+            </core-toolbar>
+          </div>
+          <div class="content">
+            <ul id="toggles" layout center>
+              <!--<li>
+                <paper-checkbox checked="{{filtersToSend[0].value}}" class="item"></paper-checkbox>
+                <span class="label">Sport</span>
+              </li>
+              <li>
+                <paper-checkbox checked="{{filtersToSend[1].value}}" class="item"></paper-checkbox>
+                <span class="label">Watch</span>
+              </li>
+              <li>
+                <paper-checkbox checked="{{filtersToSend[2].value}}" class="item"></paper-checkbox>
+                <span class="label">Edition</span>
+              </li>-->
+              <li>
+                <span class="label">Collection</span>
+                <paper-dropdown-menu selected="{{filtersToSend[0].value}}" valueattr="label" halign="right">
+                  <paper-item label="Indiferent"></paper-item>
+                  <paper-item label="Sport"></paper-item>
+                  <paper-item label="Watch"></paper-item>
+                  <paper-item label="Edition"></paper-item>
+              </paper-dropdown-menu>
+              </li>
+              <li>
+                <span class="label">Size</span>
+                <paper-dropdown-menu selected="{{filtersToSend[1].value}}" valueattr="label" halign="right">
+                  <paper-item label="Indiferent"></paper-item>
+                  <paper-item label="38mm"></paper-item>
+                  <paper-item label="42mm"></paper-item>
+              </paper-dropdown-menu>
+              </li>
+            </ul>
+          </div>
+            <footer>
+              <paper-button on-tap="{{filter}}" class="colored custom"><core-icon icon="check"></core-icon>Accept</paper-button>
+              <paper-button on-tap="{{close}}"><core-icon icon="clear"></core-icon>Cancel</paper-button>
+            </footer>
+        </div>
+</template>
+
+<script>
+  Polymer('filter-menu', {
+    created: function() {
+      this.filtersToSend = [
+      /*{
+        text : 'Sport',
+        value : false
+      },
+      {
+        text : 'Watch',
+        value : false
+      },
+      {
+        text : 'Edition',
+        value : false
+      },*/
+      {
+        text : 'collection',
+        value : 'Indiferent'
+      },
+      {
+        text : 'size',
+        value : 'Indiferent'
+      }]
+    },
+    close: function() {
+      this.fire('close-filter-menu');
+     },
+    filter: function(event, detail, sender) {
+      var value = sender.getAttribute('value'),
+        key = sender.getAttribute('key'),
+        text = sender.getAttribute('text');
+      this.fire('filter-sended',  this.filtersToSend);
+     }
+  });
+</script>
+
+</polymer-element>
