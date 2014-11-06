@@ -53,6 +53,7 @@
   .container {
     width: 80%;
     margin: 50px auto;
+    margin-top: 20px;
   }
   polymer-ui-sidebar-menu {
     width: 240px;
@@ -84,14 +85,14 @@
   }
   core-scaffold::shadow core-toolbar {
       color: #fff;
-      //padding-top: 20px;
-      height: 64px;
+      padding-top: 20px;
+      height: 84px;
       //padding-left: 20px;
     }
   core-scaffold core-toolbar {
       color: #fff;
-      //padding-top: 20px;
-      height: 64px;
+      padding-top: 20px;
+      height: 84px;
       //padding-left: 20px;
     }
     #toast {
@@ -197,9 +198,6 @@
     });
 
     filterMenu.addEventListener('filter-sended', function(event) {
-      list.show = 'all';
-      scaffold.setAttribute('class', 'purple');
-      mainTitle.text = 'All models';
       list.posts.forEach(function(post){
         post.visible = true;
       });
@@ -251,9 +249,11 @@
       list.show = 'favorites';
       message = (!existsFavs) ? 'No favorites yet. Choose a model.' : message;
       toolbarClass = 'pink';
+      fab.hidden=true;
     } else {
       list.show = 'all';
       message = 'Showing all models.';
+      fab.hidden=false;
     }
     mainTitle.text = text;
 
