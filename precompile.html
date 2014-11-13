@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>Apple Watch Catalogue</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <script src="bower_components/platform/platform.js"></script>
+  <link rel="import" href="bower_components/core-elements/core-elements.html">
+  <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+  <link rel="import" href="post-filter.html">
+  <link rel="import" href="post-list.html">
+  <link rel="import" href="main-title.html">
+  <link rel="import" href="filter-menu.html">
+  <style>
+  html,body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+    font-weight: 200;
+  }
+  core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; 
+  }
+
+  .purple {
+    background-color: #3f51b5;
+  }
+
+  .pink paper-tab::shadow #ink {
+    color: #ff4081;
+  }
+  .pink #ink {
+    color: #ff4081;
+  }
+  .pink #selectionBar {
+    background-color: #ff4081;
+  }
+  .container {
+    width: 80%;
+    margin: 50px auto;
+    margin-top: 20px;
+  }
+  polymer-ui-sidebar-menu {
+    width: 240px;
+    height: 100%;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+  }
+  paper-fab {
+    background: #ff4081;
+    bottom: 28px;
+    right: 40%;
+    position: absolute;
+  }
+  @media (min-width: 481px) {
+    #tabs {
+      width: 200px;
+    }
+    .container {
+      width: 400px;
+    }
+  }
+  core-scaffold::shadow core-toolbar {
+      color: #fff;
+      padding-top: 20px;
+      height: 84px;
+    }
+  core-scaffold core-toolbar {
+      color: #fff;
+      padding-top: 20px;
+      height: 84px;
+    }
+    #toast {
+      position: relative;
+    }
+    #footer {
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      width: 100%;
+    }
+    core-scaffold.purple::shadow core-toolbar {
+      background-color: #3f51b5;
+    }
+    core-scaffold.purple core-toolbar {
+      background-color: #3f51b5;
+    }
+    core-scaffold.pink::shadow core-toolbar {
+      background-color: #ff4081;
+    }
+    core-scaffold.pink core-toolbar {
+      background-color: #ff4081;
+    }
+@media (max-width: 600px) {
+  paper-fab {
+    left: 80%;
+  }
+}
+    #animate-me {
+      background-color: #FFF;
+      position: fixed;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body unresolved>
+  <core-scaffold mode="waterfall" class="purple">
+    <core-header-panel navigation flex mode="seamed">
+      <core-toolbar><span>Apple Watch</span></core-toolbar>
+      <core-menu theme="core-light-theme">
+        <post-filter></post-filter>
+      </core-menu>
+    </core-header-panel>
+    <template is="auto-binding" id="toolbarTitle">
+      <div tool>{{text}}</div>
+    </template>
+    <div class="container" layout vertical center style="position: relative;">
+      <post-list show="all" hidden></post-list>
+    </div>
+    <div class="footer">
+      <!--<paper-toast id="toast"></paper-toast>-->
+      <paper-fab icon="filter" onclick="tap()"></paper-fab>
+    </div>
+  </core-scaffold>
+    <div id="animate-me" hidden>
+      <filter-menu></filter-menu>
+    </div>
+  <script>
+    var list = document.querySelector('post-list'),
+    filters = document.querySelector('post-filter'),
+    fab = document.querySelector('paper-fab'),
+    /*toast = document.querySelector('paper-toast'),*/
+    scaffold = document.querySelector('core-scaffold'),
+    mainTitle = document.querySelector('#toolbarTitle'),
+    filterMenu = document.querySelector('filter-menu'),
+    filterLayer = document.querySelector('#animate-me'),
+    meta,
+    transition,
+    state = {
+      opened: false 
+    };
+    document.addEventListener('polymer-ready', function() {
+      setup();
+      filterLayer.removeAttribute('hidden');
+      list.removeAttribute('hidden');
+    });
+    mainTitle.text = "All models";
+
+    function getMeta() {
+      if (!meta) {
+        meta = document.createElement('core-meta');
+        meta.type = 'transition';
+      }
+      return meta;
+    }
+    function setup() {
+      var target = document.getElementById('animate-me');
+
+      var value = 'core-transition-bottom';
+      transition = getMeta().byId(value);
+      transition.setup(target);
+    }
+    function tap() {
+      var target = document.getElementById('animate-me');
+      state.opened = true;
+      transition.go(target, state);
+    }
+
+    filterMenu.addEventListener('close-filter-menu', function(event) {
+      state.opened = false;
+      transition.go(filterLayer, state);
+    });
+
+    filterMenu.addEventListener('filter-sended', function(event) {
+      list.posts.forEach(function(post){
+        post.visible = true;
+      });
+      event.detail.forEach(function(detail){
+        list.posts.forEach(function(post){
+          switch(detail.text) {
+            case 'size':
+              if (detail.value !== 'No filter' && detail.value !== '' && post.size !== detail.value) {
+                post.visible = false;
+              }
+              break;
+              case 'collection':
+              if (detail.value !== 'No filter' && detail.value !== '' && post.collection !== detail.value) {
+                post.visible = false;
+              }
+              break;
+              case 'wristColor':
+              if (detail.value !== 'No filter' && detail.value !== '' && post.wristColor !== detail.value) {
+                post.visible = false;
+              }
+              break;
+              case 'case':
+              if (detail.value !== 'No filter' && detail.value !== '' && post.case !== detail.value) {
+                post.visible = false;
+              }
+              break;
+          }
+        });
+      });
+      state.opened = false;
+      transition.go(filterLayer, state);
+    });
+
+  filters.addEventListener('filter-selected', function(event) {
+    var value = event.detail.value,
+        key = event.detail.key,
+        text = event.detail.text,
+        message,
+        toolbarClass = 'purple';
+
+    message = 'Showing ' + value + ' models.';
+    if (value === 'favorite') {
+      list.show = 'favorites';
+      message = 'Here, your favorite models.';
+      toolbarClass = 'pink';
+      fab.hidden=true;
+    } else {
+      list.show = 'all';
+      message = 'Showing all models.';
+      fab.hidden=false;
+    }
+    mainTitle.text = text;
+
+    scaffold.setAttribute('class', toolbarClass);
+    /*if (toast.opened) {
+      toast.dismiss();
+      setTimeout(function(){
+        toast.text = message;
+        toast.show();
+      }, 500);
+    } else {
+      toast.duration = 3000;
+        toast.text = message;
+        toast.show();
+    }*/
+    scaffold.closeDrawer();
+  });
+
+  </script>
+</body>
+
+</html>
