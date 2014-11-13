@@ -59,7 +59,7 @@
   paper-fab {
     background: #ff4081;
     bottom: 28px;
-    left: 90%;
+    right: 40%;
     position: absolute;
   }
   @media (min-width: 481px) {
@@ -130,10 +130,10 @@
       <post-list show="all" hidden></post-list>
     </div>
     <div class="footer">
-      <paper-toast id="toast"></paper-toast>
+      <!--<paper-toast id="toast"></paper-toast>-->
+      <paper-fab icon="filter" onclick="tap()"></paper-fab>
     </div>
   </core-scaffold>
-    <paper-fab icon="filter" onclick="tap()"></paper-fab>
     <div id="animate-me" hidden>
       <filter-menu></filter-menu>
     </div>
@@ -141,7 +141,7 @@
     var list = document.querySelector('post-list'),
     filters = document.querySelector('post-filter'),
     fab = document.querySelector('paper-fab'),
-    toast = document.querySelector('paper-toast'),
+    /*toast = document.querySelector('paper-toast'),*/
     scaffold = document.querySelector('core-scaffold'),
     mainTitle = document.querySelector('#toolbarTitle'),
     filterMenu = document.querySelector('filter-menu'),
@@ -238,7 +238,7 @@
     mainTitle.text = text;
 
     scaffold.setAttribute('class', toolbarClass);
-    if (toast.opened) {
+    /*if (toast.opened) {
       toast.dismiss();
       setTimeout(function(){
         toast.text = message;
@@ -248,7 +248,7 @@
       toast.duration = 3000;
         toast.text = message;
         toast.show();
-    }
+    }*/
     scaffold.closeDrawer();
   });
 

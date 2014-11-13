@@ -52,7 +52,6 @@
             }
             footer {
               font-size: 14px;
-              padding-left: 20px;
               padding-bottom: 20px;
               padding-top: 40px;
               bottom: 0;
@@ -122,9 +121,9 @@
             </ul>
           </div>
             <footer>
-              <paper-button raised on-tap="{{filter}}" class="colored custom"><core-icon icon="check"></core-icon>OK</paper-button>
-              <paper-button raised on-tap="{{close}}"><core-icon icon="clear"></core-icon>Cancel</paper-button>
-              <paper-button raised on-tap="{{clear}}"><core-icon icon="refresh"></core-icon>Clear</paper-button>
+              <paper-button on-tap="{{filter}}" class="colored custom">OK</paper-button>
+              <paper-button on-tap="{{close}}">Cancel</paper-button>
+              <paper-button on-tap="{{clear}}">Clear</paper-button>
             </footer>
         </div>
 </template>
