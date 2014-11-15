@@ -34,13 +34,13 @@
   }
 
   .pink paper-tab::shadow #ink {
-    color: #ff4081;
+    color: #E91E63;
   }
   .pink #ink {
-    color: #ff4081;
+    color: #E91E63;
   }
   .pink #selectionBar {
-    background-color: #ff4081;
+    background-color: #E91E63;
   }
   .container {
     width: 80%;
@@ -57,7 +57,7 @@
     width: 100%;
   }
   paper-fab {
-    background: #ff4081;
+    background: #E91E63; /*color A500*/
     bottom: 28px;
     left: 90%;
     position: fixed;
@@ -72,13 +72,13 @@
   }
   core-scaffold::shadow core-toolbar {
       color: #fff;
-      padding-top: 20px;
-      height: 84px;
+      //padding-top: 20px;
+      height: 64px;
     }
   core-scaffold core-toolbar {
       color: #fff;
-      padding-top: 20px;
-      height: 84px;
+      //padding-top: 20px;
+      height: 64px;
     }
     #toast {
       position: relative;
@@ -96,10 +96,10 @@
       background-color: #3f51b5;
     }
     core-scaffold.pink::shadow core-toolbar {
-      background-color: #ff4081;
+      background-color: #E91E63;
     }
     core-scaffold.pink core-toolbar {
-      background-color: #ff4081;
+      background-color: #E91E63;
     }
 @media (max-width: 600px) {
   paper-fab {
@@ -113,10 +113,35 @@
       width: 100%;
       height: 100%;
     }
+
+    #no-favs {
+      background-color: #EC407A;/*color A400*/
+      position: fixed;
+      top: 64px;
+      width: 100%;
+      height: 100%;
+      color: white;
+      font-family: 'RobotoDraft', sans-serif;
+      font-weight: 200;
+      text-align: center;
+      padding-top: 70px;
+    }
+    #no-favs .container {
+      width: 60%;
+    }
+    #no-favs p{
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    #no-favs core-icon{
+      width: 120px;
+      height: 120px;
+      margin-bottom: -20px;
+    }
   </style>
 </head>
 <body unresolved>
-  <core-scaffold mode="waterfall" class="purple">
+  <core-scaffold responsiveWidth="820px" mode="waterfall" class="purple">
     <core-header-panel navigation flex mode="seamed">
       <core-toolbar><span>Apple Watch</span></core-toolbar>
       <core-menu theme="core-light-theme">
@@ -133,6 +158,13 @@
       <!--<paper-toast id="toast"></paper-toast>-->
       <paper-fab icon="filter" onclick="tap()"></paper-fab>
     </div>
+    <div id="no-favs" hidden>
+      <div class="container">
+          <core-icon icon="star"></core-icon>
+        <p>Nothing in favorites</p>
+        <span>Here all models brands as favorites until the day you have to decide on one gets saved.</span>
+      </div>
+    </div>
   </core-scaffold>
     <div id="animate-me" hidden>
       <filter-menu></filter-menu>
@@ -146,14 +178,17 @@
     mainTitle = document.querySelector('#toolbarTitle'),
     filterMenu = document.querySelector('filter-menu'),
     filterLayer = document.querySelector('#animate-me'),
+    noFavsLayer = document.querySelector('#no-favs'),
     meta,
     transition,
     state = {
-      opened: false 
-    };
+      opened: false
+    },
+    noUserFavs = true;
     document.addEventListener('polymer-ready', function() {
       setup();
       filterLayer.removeAttribute('hidden');
+      noFavsLayer.removeAttribute('hidden');
       list.removeAttribute('hidden');
     });
     mainTitle.text = "All models";
@@ -166,16 +201,23 @@
       return meta;
     }
     function setup() {
-      var target = document.getElementById('animate-me');
+      var target = filterLayer,
+          target2 = noFavsLayer;
 
-      var value = 'core-transition-bottom';
+      var value = 'core-transition-bottom',
+          fade = 'core-transition-fade';
       transition = getMeta().byId(value);
+      transitionFavs = getMeta().byId(fade);
       transition.setup(target);
+      transition.setup(target2);
     }
     function tap() {
-      var target = document.getElementById('animate-me');
       state.opened = true;
-      transition.go(target, state);
+      transition.go(filterLayer, state);
+    }
+
+    function showNoFavs() {
+      transition.go(noFavsLayer, {opened : true});
     }
 
     filterMenu.addEventListener('close-filter-menu', function(event) {
@@ -217,6 +259,12 @@
       transition.go(filterLayer, state);
     });
 
+  list.addEventListener('fav-selected', function(event) {
+    if (list.noUserFavs && list.show === 'favorites') {
+      showNoFavs();
+    }
+  });
+
   filters.addEventListener('filter-selected', function(event) {
     var value = event.detail.value,
         key = event.detail.key,
@@ -230,10 +278,14 @@
       message = 'Here, your favorite models.';
       toolbarClass = 'pink';
       fab.hidden=true;
+      if (list.noUserFavs) {
+        showNoFavs();
+      }
     } else {
       list.show = 'all';
       message = 'Showing all models.';
       fab.hidden=false;
+      transition.go(noFavsLayer, {opened : false});
     }
     mainTitle.text = text;
 

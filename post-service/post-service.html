@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
-<polymer-element name="post-service" attributes="posts">
+<polymer-element name="post-service" attributes="posts noUserFavs">
   <template>
     <style>
     :host {
@@ -20,6 +20,7 @@
   Polymer('post-service', {
     created: function() {
       this.posts = [];
+      this.noUserFavs = true;
     },
     postsLoaded: function() {
       var userVersion = this.$.storageVersion.value ? parseFloat(this.$.storageVersion.value) : 0,
@@ -52,6 +53,9 @@
         for (var fav in this.userFavs) {
           if (this.posts[post].uid.toString() === fav) {
             this.posts[post].favorite = this.userFavs[fav];
+            if(this.userFavs[fav]) {
+              this.noUserFavs = false;
+            };
           }
         }
         if(typeof(search) !== "undefined") {
@@ -67,6 +71,12 @@
     setFavorite: function(uid, isFavorite) {
       this.userFavs[uid] = isFavorite;
       this.$.storage.save();
+      this.noUserFavs = true;
+      for (var fav in this.userFavs) {
+        if (this.userFavs[fav]) {
+          this.noUserFavs = false;
+        };
+      };
     }
   });
   </script>

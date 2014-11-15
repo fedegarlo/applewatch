@@ -16,7 +16,7 @@
     }
     </style>
 
-    <post-service id="service" posts="{{posts}}"></post-service>
+    <post-service id="service" posts="{{posts}}" noUserFavs="{{noUserFavs}}"></post-service>
     
     <div layout vertical center>
       <template repeat="{{post in posts}}">
@@ -39,6 +39,7 @@
     handleFavorite: function(event, detail, sender) {
       var post = sender.templateInstance.model.post;
       this.$.service.setFavorite(post.uid, post.favorite);
+      this.fire('fav-selected');
     },
     shareItem: function(event, detail, sender) {
       var id = sender.templateInstance.model.post.uid,

@@ -53,29 +53,26 @@
       color: #636363;
     }
     :host([favorite]) core-icon-button {
-      color: #e91e63;
+      color: #E91E63;
     }
     </style>
-
-    <div class="card-header" layout center>
-
-      <content select="img"></content>
-      <content select="h2"></content>
-
-    </div>
-
-    <core-icon-button
-      id="favicon"
-      icon="star"
-      on-tap="{{favoriteTapped}}">
-    </core-icon-button>
-    <core-icon-button
-      id="share"
-      src="res/icons/twitter_logo.png"
-      on-tap="{{shareItem}}">
-    </core-icon-button>
-
-    <content></content>   
+      <paper-shadow z="1">
+        <div class="card-header" layout center>
+          <content select="img"></content>
+          <content select="h2"></content>
+        </div>
+        <core-icon-button
+          id="favicon"
+          icon="star"
+          on-tap="{{favoriteTapped}}">
+        </core-icon-button>
+        <core-icon-button
+          id="share"
+          src="res/icons/twitter_logo.png"
+          on-tap="{{shareItem}}">
+        </core-icon-button>
+      <content></content>   
+    </paper-shadow>
   </template>
   <script>
   Polymer({
