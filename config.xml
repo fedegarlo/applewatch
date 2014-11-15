@@ -54,8 +54,8 @@
 	<feature name="http://api.phonegap.com/1.0/network"/>
 
     
-    <!--<access origin="http://digitalpapyrus.eu" subdomains="true" />
-    <access origin="http://digitalpapyrus.es" subdomains="true" />
+    <access origin="http://fedegarlo.com" subdomains="true" />
+    <!--<access origin="http://digitalpapyrus.es" subdomains="true" />
     <access origin="http://outbook.es" subdomains="true" />
 	<access origin="http://openstreetmap.org" subdomains="true" />
     <access origin="http://stamen.com" subdomains="true" />

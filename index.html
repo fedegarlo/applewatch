@@ -1227,6 +1227,9 @@ html /deep/ paper-item::shadow ::content > a {
   
 
   
+  
+
+
   <style>
   html,body {
     height: 100%;
@@ -1294,12 +1297,6 @@ html /deep/ paper-item::shadow ::content > a {
     }
     #toast {
       position: relative;
-    }
-    #footer {
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
-      width: 100%;
     }
     core-scaffold.purple::shadow core-toolbar {
       background-color: #3f51b5;
@@ -14951,9 +14948,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.filters = [
       {
         text : 'All models',
-        name : 'catalogo',
-        value : 'reset',
-        key : 'reset',
+        name : 'all',
+        value : 'all',
+        key : 'all',
         icon : 'apps'
       },
       {
@@ -14961,6 +14958,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         name : 'favorite',
         value : 'favorite',
         key : 'favorite',
+        icon : 'star'
+      },
+      {
+        text : 'Apple products',
+        name : 'apple',
+        value : 'apple',
+        key : 'apple',
         icon : 'star'
       }]
     }
@@ -15007,7 +15011,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       display: none;
     }
     </style>
-    <core-ajax id="ajax" auto="" url="api/datos.json" on-core-response="{{postsLoaded}}" handleas="json">
+    <core-ajax id="ajax" auto="" url="api/watches.json" on-core-response="{{postsLoaded}}" handleas="json">
     </core-ajax>
     <core-localstorage id="storage" name="favorites" value="{{userFavs}}"></core-localstorage>
     <core-localstorage id="storageVersion" name="version" value="{{version}}"></core-localstorage>
@@ -15179,12 +15183,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <post-service id="service" posts="{{posts}}" nouserfavs="{{noUserFavs}}"></post-service>
-    
     <div layout="" vertical="" center="">
       <template repeat="{{post in posts}}">
         <post-card favorite="{{post.favorite}}" uid="{{post.uid}}" on-favorite-tap="{{handleFavorite}}" on-share-item="{{shareItem}}" hidden?="{{(show == 'all' &amp;&amp; !post.visible) || show == 'favorites' &amp;&amp; !post.favorite}}">
           <img src="{{post.picture}}" width="80%">
-          <h2><span class="collection">{{post.collection}}</span> {{post.case}}</h2>
+          <h2><span class="collection">{{post.collection}}</span> {{post.model}}</h2>
           <p>{{post.size}} {{post.wrist}}</p>
         </post-card>
       </template>
@@ -15355,8 +15358,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <li>
                 <span class="label">Case</span>
                 <paper-dropdown-menu selected="{{filtersToSend[3].value}}" valueattr="label" halign="right">
-                  <paper-item label="Silver Aluminum"></paper-item>
-                  <paper-item label="Space Gray Aluminum"></paper-item>
+                  <paper-item label="Silver Aluminum Case"></paper-item>
+                  <paper-item label="Space Gray Aluminum Case"></paper-item>
                   <paper-item label="Stainless Steel Case"></paper-item>
                   <paper-item label="Space Black Stainless Steel"></paper-item>
                   <paper-item label="18K Yellow Gold"></paper-item>
@@ -15391,7 +15394,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value : ''
       },
       {
-        text : 'case',
+        text : 'model',
         value : ''
       }]
     },
@@ -15412,7 +15415,76 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   });
 </script>
 
+</polymer-element>
+<polymer-element name="polymer-jsonp" attributes="url response auto bustCache" assetpath="">
+  <script>
+    (function() {
+      Polymer('polymer-jsonp', {
+        /**
+         * The URL target of the request.
+         * 
+         * @attribute url
+         * @type string
+         * @default ''
+         */
+        url: '',
+        /**
+         * Returns the response object.
+         *
+         * @attribute response
+         * @type Object
+         * @default null
+         */
+        response: null,
+        bustCache: false,
+        auto: false,
+        urlChanged: function() {
+          if (this.url && this.auto) {
+            this.go();
+          }
+        },
+        /**
+         * Performs a JSONP request to the url specified.
+         *
+         * @method go
+         */
+        go: function() {
+          if (!this.isInFlight()) {
+            this.callbackFunc = JSONP_CALLBACK_FUNC_NAME + callbackId++;
+            window[this.callbackFunc] = this.respond.bind(this);
+            var url = this.url + this.callbackFunc + (this.bustCache ? '&' + Math.random() : '');
+            this.addScript(url);
+          }
+        },
+        isInFlight: function() {
+          return !!this.script;
+        },
+        addScript: function(inSrc) {
+          this.script = document.createElement('script');
+          this.script.src = inSrc;
+          this.script.onerror = this.respond.bind(this);
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(this.script, s);
+        },
+        removeScript: function() {
+          if (this.script.parentNode) {
+            this.script.parentNode.removeChild(this.script);
+          }
+          this.script = null;
+        },
+        respond: function(inResponse) {
+          this.response = inResponse;
+          this.removeScript();
+          delete window[this.callbackFunc];
+          this.fire('polymer-response', {response: inResponse});
+        }
+      });
+      var JSONP_CALLBACK_FUNC_NAME = '_polymer_jsonp_callback_';
+      var callbackId = 0;
+    })();
+  </script>
 </polymer-element></div>
+  <polymer-jsonp auto="" url="http://www.fedegarlo.com/gpa/watch/api/proxy.php?file=apple&amp;callback="></polymer-jsonp>
   <core-scaffold responsivewidth="820px" mode="waterfall" class="purple">
     <core-header-panel navigation="" flex="" mode="seamed">
       <core-toolbar><span>Apple Watch</span></core-toolbar>
@@ -15424,10 +15496,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div tool="">{{text}}</div>
     </template>
     <div class="container" layout="" vertical="" center="" style="position: relative;">
-      <post-list show="all" hidden=""></post-list>
+      <post-list id="watches" show="all" hidden=""></post-list>
+      <post-list id="apple" show="all" hidden=""></post-list>
     </div>
     <div class="footer">
-      <!--<paper-toast id="toast"></paper-toast>-->
       <paper-fab icon="filter" onclick="tap()"></paper-fab>
     </div>
     <div id="no-favs" hidden="">
@@ -15442,15 +15514,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <filter-menu></filter-menu>
     </div>
   <script>
-    var list = document.querySelector('post-list'),
+    var list = document.querySelector('#watches'),
+    appleList = document.querySelector('#apple'),
     filters = document.querySelector('post-filter'),
     fab = document.querySelector('paper-fab'),
-    /*toast = document.querySelector('paper-toast'),*/
     scaffold = document.querySelector('core-scaffold'),
     mainTitle = document.querySelector('#toolbarTitle'),
     filterMenu = document.querySelector('filter-menu'),
     filterLayer = document.querySelector('#animate-me'),
     noFavsLayer = document.querySelector('#no-favs'),
+    jsonp = document.querySelector("polymer-jsonp"),
+    interchanger = null,
     meta,
     transition,
     state = {
@@ -15488,6 +15562,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       transition.go(filterLayer, state);
     }
 
+    function showAppleProducts () {
+      list.$.service.posts = jsonp.response;
+    }
+
     function showNoFavs() {
       transition.go(noFavsLayer, {opened : true});
     }
@@ -15519,8 +15597,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 post.visible = false;
               }
               break;
-              case 'case':
-              if (detail.value !== 'No filter' && detail.value !== '' && post.case !== detail.value) {
+              case 'model':
+              if (detail.value !== 'No filter' && detail.value !== '' && post.model !== detail.value) {
                 post.visible = false;
               }
               break;
@@ -15541,38 +15619,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var value = event.detail.value,
         key = event.detail.key,
         text = event.detail.text,
-        message,
         toolbarClass = 'purple';
 
-    message = 'Showing ' + value + ' models.';
     if (value === 'favorite') {
+      appleList.hidden = true;
+      list.removeAttribute('hidden');
       list.show = 'favorites';
-      message = 'Here, your favorite models.';
       toolbarClass = 'pink';
       fab.hidden=true;
       if (list.noUserFavs) {
         showNoFavs();
       }
-    } else {
+    } else if (value === 'all') {
+      appleList.hidden = true;
+      list.removeAttribute('hidden');
       list.show = 'all';
-      message = 'Showing all models.';
       fab.hidden=false;
       transition.go(noFavsLayer, {opened : false});
+    } if (value === 'apple') {
+      list.hidden = true;
+      appleList.removeAttribute('hidden');
+      appleList.$.service.posts = jsonp.response;
     }
     mainTitle.text = text;
 
     scaffold.setAttribute('class', toolbarClass);
-    /*if (toast.opened) {
-      toast.dismiss();
-      setTimeout(function(){
-        toast.text = message;
-        toast.show();
-      }, 500);
-    } else {
-      toast.duration = 3000;
-        toast.text = message;
-        toast.show();
-    }*/
     scaffold.closeDrawer();
   });
 
