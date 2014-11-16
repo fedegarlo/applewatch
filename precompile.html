@@ -136,7 +136,7 @@
   </style>
 </head>
 <body unresolved>
-  <polymer-jsonp auto url="http://www.fedegarlo.com/gpa/watch/api/proxy.php?file=apple&callback="></polymer-jsonp>
+  <polymer-jsonp url="http://www.fedegarlo.com/gpa/watch/api/proxy.php?file=apple&callback="></polymer-jsonp>
   <core-scaffold responsiveWidth="820px" mode="waterfall" class="purple">
     <core-header-panel navigation flex mode="seamed">
       <core-toolbar><span>Apple Watch</span></core-toolbar>
@@ -267,6 +267,10 @@
     }
   });
 
+  jsonp.addEventListener("polymer-response", function(e) {
+    appleList.$.service.posts = e.detail.response;
+  });
+
   filters.addEventListener('filter-selected', function(event) {
     var value = event.detail.value,
         key = event.detail.key,
@@ -290,8 +294,10 @@
       transition.go(noFavsLayer, {opened : false});
     } if (value === 'apple') {
       list.hidden = true;
+      if (!jsonp.response) {
+        jsonp.go();
+      }
       appleList.removeAttribute('hidden');
-      appleList.$.service.posts = jsonp.response;
     }
     mainTitle.text = text;
 

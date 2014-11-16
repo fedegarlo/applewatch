@@ -15484,7 +15484,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     })();
   </script>
 </polymer-element></div>
-  <polymer-jsonp auto="" url="http://www.fedegarlo.com/gpa/watch/api/proxy.php?file=apple&amp;callback="></polymer-jsonp>
+  <polymer-jsonp url="http://www.fedegarlo.com/gpa/watch/api/proxy.php?file=apple&amp;callback="></polymer-jsonp>
   <core-scaffold responsivewidth="820px" mode="waterfall" class="purple">
     <core-header-panel navigation="" flex="" mode="seamed">
       <core-toolbar><span>Apple Watch</span></core-toolbar>
@@ -15615,6 +15615,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   });
 
+  jsonp.addEventListener("polymer-response", function(e) {
+    appleList.$.service.posts = e.detail.response;
+  });
+
   filters.addEventListener('filter-selected', function(event) {
     var value = event.detail.value,
         key = event.detail.key,
@@ -15638,8 +15642,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       transition.go(noFavsLayer, {opened : false});
     } if (value === 'apple') {
       list.hidden = true;
+      if (!jsonp.response) {
+        jsonp.go();
+      }
       appleList.removeAttribute('hidden');
-      appleList.$.service.posts = jsonp.response;
     }
     mainTitle.text = text;
 
