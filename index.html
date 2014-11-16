@@ -136,7 +136,7 @@
   </style>
 </head>
 <body unresolved>
-  <polymer-jsonp url="http://www.fedegarlo.com/gpa/watch/api/proxy.php?file=apple&callback="></polymer-jsonp>
+  <polymer-jsonp url="http://www.fedegarlo.com/data/proxy.php?file=apple&callback="></polymer-jsonp>
   <core-scaffold responsiveWidth="820px" mode="waterfall" class="purple">
     <core-header-panel navigation flex mode="seamed">
       <core-toolbar><span>Apple Watch</span></core-toolbar>
@@ -297,6 +297,7 @@
       if (!jsonp.response) {
         jsonp.go();
       }
+      transition.go(noFavsLayer, {opened : false});
       appleList.removeAttribute('hidden');
     }
     mainTitle.text = text;
