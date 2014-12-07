@@ -17,10 +17,10 @@
 		"familia" : "appletv",
 		"index" : 0,
 		"modelsdata" : 0,
-		"picture" : "http://www.macfools.com/img/2013-appletv.jpg",
+		"picture" : "http://www.macfools.com/img/2013-appletv.png",
 		"model" : "Apple TV",
 		"version" : "2013",
-		"fecha": 1331074800000,
+		"date": 1331074800000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -52,7 +52,7 @@
 		"picture" : "http://www.macfools.com/img/imac.jpg",
 		"model" : "iMac",
 		"version" : "2013",
-		"fecha": 1379973600000,
+		"date": 1379973600000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -85,6 +85,41 @@
 			]
 	},
 	{	
+		"id" : "imacretina",
+		"principal" : true,
+		"familia" : "imac",
+		"index" : 21,
+		"modelsdata" : null,
+		"picture" : "http://www.macfools.com/img/imac_retina.png",
+		"model" : "iMac Retina",
+		"version" : "2014",
+		"date": 1413410400000,
+		"purchasePrice" : [
+			{
+				"zone" : "EU",
+				"number" : 1329,
+				"currency" : "€",
+				"type" : "from"
+			}
+		],
+		"mediaDiasActualizar" : 333,
+		"justUpdated" : false,
+		"outOfDate" : false,
+		"comingSoon" : false,
+		"ownProduct" : false,
+		"wantProduct" : false,"visible" : "true",
+		"modelo" : null,
+		"models" :
+			[
+				{ "id" : "27P32GHZ",
+					"model" : "27' 3,2GHz"
+				},
+				{ "id" : "27P34GHZ",
+					"model" : "27' 3,4GHz"
+				}
+			]
+	},
+	{	
 		"id" : "macpro",
 		"principal" : true,
 		"familia" : "macpro",
@@ -93,7 +128,7 @@
 		"picture" : "http://www.macfools.com/img/2013-MacPro.jpg",
 		"model" : "Mac Pro",
 		"version" : "2013",
-		"fecha": 1387407600000,
+		"date": 1387407600000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -120,7 +155,7 @@
 			]
 	},
 	{	
-		"id" : "ipadair",
+		"id" : "ipadair2",
 		"features" : [
 			{
 				"text" : "display",
@@ -146,16 +181,21 @@
 				"text" : "coprocessor",
 				"class" : "cog",
 				"value" : "CHIP M7"
+			},
+			{
+				"text" : "touchid",
+				"class" : "hand-up",
+				"value" : "Touch ID"
 			}
 		],
 		"principal" : true,
 		"familia" : "ipad",
 		"index" : 3,
 		"modelsdata" : 3,
-		"picture" : "http://www.macfools.com/img/2013-ipadAir-silver.jpg",
-		"model" : "iPad Air",
-		"version" : "2013",
-		"fecha": 1383260400000,
+		"picture" : "http://www.macfools.com/img/ipad_air_2.png",
+		"model" : "iPad Air 2",
+		"version" : "",
+		"date": 1413410400000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -194,7 +234,7 @@
 			]
 	},
 	{	
-		"id" : "ipadminiretina",
+		"id" : "ipadmini3",
 		"features" : [
 			{
 				"text" : "display",
@@ -220,16 +260,21 @@
 				"text" : "coprocessor",
 				"class" : "cog",
 				"value" : "CHIP M7"
+			},
+			{
+				"text" : "touchid",
+				"class" : "hand-up",
+				"value" : "Touch ID"
 			}
 		],
 		"principal" : true,
 		"familia" : "ipadmini",
 		"index" : 5,
 		"modelsdata" : 5,
-		"picture" : "http://www.macfools.com/img/2013-ipadMiniRetina-silver.png",
-		"model" : "iPad mini",
-		"version" : "Retina",
-		"fecha": 1384269600000,
+		"picture" : "http://www.macfools.com/img/ipad_mini_3.png",
+		"model" : "iPad mini 3",
+		"version" : "",
+		"date": 1413410400000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -276,7 +321,7 @@
 		"picture" : "http://www.macfools.com/img/nano-2013.png",
 		"model" : "iPod Nano",
 		"version" : "2013",
-		"fecha": 1378764000000,
+		"date": 1378764000000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -309,7 +354,7 @@
 		"picture" : "http://www.macfools.com/img/shuffle-2013.png",
 		"model" : "iPod Shuffle",
 		"version" : "2013",
-		"fecha": 1283292000000,
+		"date": 1283292000000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -341,7 +386,7 @@
 		"picture" : "http://www.macfools.com/img/ipod-touch-2013.png",
 		"model" : "iPod Touch",
 		"version" : "2013",
-		"fecha": 1378764000000,
+		"date": 1378764000000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -396,7 +441,7 @@
 		"picture" : "http://www.macfools.com/img/mbretina2013.png",
 		"model" : "MacBook Pro Retina",
 		"version" : "2013",
-		"fecha": 1382392800000,
+		"date": 1382392800000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -454,7 +499,7 @@
 		"picture" : "http://www.macfools.com/img/macbookair2013.png",
 		"model" : "MacBook Air",
 		"version" : "2014",
-		"fecha": 1398722400000,
+		"date": 1398722400000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -487,7 +532,7 @@
 			]
 	},
 	{	
-		"id" : "macmini",
+		"id" : "macmini2014",
 		"features" : [
 			{
 				"text" : "processor",
@@ -511,8 +556,8 @@
 		"modelsdata" : 11,
 		"picture" : "http://www.macfools.com/img/macmini.png",
 		"model" : "Mac Mini",
-		"version" : "2012",
-		"fecha": 1350943200000,
+		"version" : "2014",
+		"date": 1413410400000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -573,12 +618,12 @@
 		],
 		"principal" : true,
 		"familia" : "iphone",
-		"index" : 12,
+		"index" : 4,
 		"modelsdata" : 4,
 		"picture" : "http://www.macfools.com/img/iphone5c2013.png",
 		"model" : "iPhone 5c",
 		"version" : "",
-		"fecha": 1379690400000,
+		"date": 1379690400000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -616,7 +661,7 @@
 		"picture" : "http://www.macfools.com/img/mbpro-old2013.png",
 		"model" : "MacBook Pro",
 		"version" : "2013",
-		"fecha": 1339365600000,
+		"date": 1339365600000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -648,7 +693,7 @@
 		"picture" : "http://www.macfools.com/img/display2013.png",
 		"version" : "",
 		"model" : "Thunderbolt Display",
-		"fecha": 1316037600000,
+		"date": 1316037600000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -680,7 +725,7 @@
 		"picture" : "http://www.macfools.com/img/airportextreme2013.jpg",
 		"model" : "Airport Extreme",
 		"version" : "2013",
-		"fecha": 1370815200000,
+		"date": 1370815200000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -754,7 +799,7 @@
 		"picture" : "http://www.macfools.com/img/2014-iphone6-black.png",
 		"model" : "iPhone 6",
 		"version" : "",
-		"fecha": 1411077600000,
+		"date": 1411077600000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -835,7 +880,7 @@
 		"picture" : "http://www.macfools.com/img/2014-iphone6-plus.png",
 		"model" : "iPhone 6 Plus",
 		"version" : "",
-		"fecha": 1411077600000,
+		"date": 1411077600000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
@@ -900,12 +945,12 @@
 		],
 		"principal" : false,
 		"familia" : "iphone",
-		"index" : 19,
+		"index" : 20,
 		"modelsdata" : 19,
 		"picture" : "http://www.macfools.com/img/2013-iphone5s-silver.jpg",
 		"model" : "iPhone 5s",
 		"version" : "",
-		"fecha": 1379690400000,
+		"date": 1379690400000,
 		"purchasePrice" : [
 			{
 				"zone" : "EU",
